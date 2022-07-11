@@ -2,11 +2,12 @@ import React from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import Task from "./Task";
 
+const reoreder = (taskList, startIndex, endIndex) => {
+  const remove = taskList.splice(startIndex, 1);
+  taskList.splice(endIndex, 0, remove[0]);
+};
+
 export const Tasks = ({ taskList, setTaskList }) => {
-  const reoreder = (taskList, startIndex, endIndex) => {
-    const remove = taskList.splice(startIndex, 1);
-    taskList.splice(endIndex, 0, remove[0]);
-  };
   const handleDragEnd = (result) => {
     reoreder(taskList, result.source.index, result.destination.index);
     setTaskList(taskList);
